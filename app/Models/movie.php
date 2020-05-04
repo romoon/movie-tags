@@ -12,4 +12,9 @@ class Movie extends Model
         'movieurl' => 'required',
         'user_id' => 'required',
     );
+
+    public function user()
+      {
+        return $this->belongsTo('App\User');
+      }
 }

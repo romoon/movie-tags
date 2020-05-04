@@ -32,20 +32,24 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th width="30%">thumbnail</th>
-                                <th width="30%">tag</th>
+                                <th width="15%">Thumbnail</th>
+                                <th width="25%">Title</th>
+                                <th width="30%">Description</th>
+                                <th width="20%">tag</th>
                                 <th width="10%">操作</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($results as $result)
+                            @foreach($movie_infos as $movie_info)
                                 <tr>
-                                    <td>{{ \Str::limit($result->movieurl, 50) }}</td>
-                                    <td>{{ \Str::limit($result->tag, 100) }}</td>
+                                    <td><img src="{{ $movie_info['thumnail_url'] }}" alt="thumnail-image"></td>
+                                    <td>{{ \Str::limit($movie_info['video_title'], 100) }}</td>
+                                    <td>{{ \Str::limit($movie_info['description'], 100) }}</td>
+                                    <td>{{ \Str::limit($movie_info['tag'], 100) }}</td>
                                     <td>
                                       <div>
-                                          <a href="{{ action('user\MovieController@edit', ['id' => $result->id]) }}">編集</a>
-                                          <a href="{{ action('user\MovieController@delete', ['id' => $result->id]) }}">削除</a>
+                                          <a href="{{ action('user\MovieController@edit', ['id' => $movie_info['id']]) }}">編集</a>
+                                          <a href="{{ action('user\MovieController@delete', ['id' => $movie_info['id']]) }}">削除</a>
                                       </div>
                                     </td>
                                 </tr>
