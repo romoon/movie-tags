@@ -20,7 +20,7 @@
                     <div class="form-group row">
                         <label class="col-md-2">動画URL</label>
                         <div class="col-md-10">
-                            <input type="url" class="form-control" name="movieurl" value="{{  $movie_form->movieurl }}" readonly>
+                            <input type="url" class="form-control" name="movieurl" value="{{  $movie_form->movieurl }}">
                         </div>
                     </div>
                     <div class="form-group row">
