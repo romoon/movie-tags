@@ -38,12 +38,13 @@
                             <input type="submit" class="btn btn-primary" value="更新">
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-md-6">
-                            <input type="button" value="登録動画の一覧" onClick="location.href='{{ asset('user/movie/index') }}'">
-                        </div>
-                    </div>
                 </form>
+            </div>
+            <div class="col-md-8 mx-auto">
+              <input type="button" value="登録動画の一覧" onClick="location.href='{{ asset('user/movie/index') }}'">
+              <input type="button" value="動画の新規登録" onClick="location.href='{{ asset('user/movie/create') }}'">
+              <input type="button" value="動画リストの一覧" onClick="location.href='{{ asset('user/movielist/index') }}'">
+              <input type="button" value="動画リストの作成" onClick="location.href='{{ asset('user/movielist/create') }}'">
             </div>
         </div>
     </div>

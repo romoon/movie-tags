@@ -17,4 +17,9 @@ class Movie extends Model
       {
         return $this->belongsTo('App\User');
       }
+
+    public function movielists()
+    {
+        return $this->belongsToMany('App\Models\Movielist');
+    }
 }

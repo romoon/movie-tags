@@ -39,7 +39,7 @@ class MovieController extends Controller
     if ($tag != '') {
         // 検索されたら検索結果を取得する
         $search = Movie::where('user_id', $currentuser)
-        ->where('tag', $tag);
+        ->where('tag', 'like', '%'.$tag.'%');
         $results = $search->get();
 
     } else {

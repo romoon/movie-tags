@@ -1,13 +1,13 @@
 @extends('layouts.user')
 
-@section('title', '動画の新規登録')
+@section('title', '動画リストの新規作成')
 
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <h2>動画の新規登録</h2>
-                <form action="{{ action('User\MovieController@create') }}" method="post" enctype="multipart/form-data">
+                <h2>動画リストの新規作成</h2>
+                <form action="{{ action('User\ListController@create') }}" method="post" enctype="multipart/form-data">
 
                     @if (count($errors) > 0)
                         <ul>
@@ -18,15 +18,15 @@
                     @endif
 
                     <div class="form-group row">
-                        <label class="col-md-2">動画URL</label>
+                        <label class="col-md-2">動画リスト名</label>
                         <div class="col-md-10">
-                            <input type="url" class="form-control" name="movieurl" value="{{  old('movieurl') }}">
+                            <input type="text" class="form-control" name="listname" value="{{  old('listname') }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2">タグ</label>
+                        <label class="col-md-2">タグリスト</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="tag" rows="3">{{ old('tag') }}</textarea>
+                            <textarea class="form-control" name="taglist" rows="3">{{ old('taglist') }}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -39,9 +39,9 @@
                 </form>
             </div>
             <div class="col-md-8 mx-auto">
-              <input type="button" value="登録動画の一覧" onClick="location.href='{{ asset('user/movie/index') }}'">
-              <input type="button" value="動画リストの一覧" onClick="location.href='{{ asset('user/movielist/index') }}'">
-              <input type="button" value="動画リストの作成" onClick="location.href='{{ asset('user/movielist/create') }}'">
+                <input type="button" value="登録動画の一覧" onClick="location.href='{{ asset('user/movie/index') }}'">
+                <input type="button" value="動画の新規登録" onClick="location.href='{{ asset('user/movie/create') }}'">
+                <input type="button" value="動画リストの一覧" onClick="location.href='{{ asset('user/movielist/index') }}'">
             </div>
         </div>
     </div>

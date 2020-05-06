@@ -22,6 +22,13 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::get('movie/edit', 'user\MovieController@edit');
     Route::post('movie/edit', 'user\MovieController@update');
     Route::get('movie/delete', 'user\MovieController@delete');
+
+    Route::get('movielist/create', 'User\ListController@add');
+    Route::post('movielist/create', 'User\ListController@create');
+    Route::get('movielist/index', 'user\ListController@index');
+    Route::get('movielist/edit', 'user\ListController@edit');
+    Route::post('movielist/edit', 'user\ListController@update');
+    Route::get('movielist/delete', 'user\ListController@delete');
 });
 
 Auth::routes();
