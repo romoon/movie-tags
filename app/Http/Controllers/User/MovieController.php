@@ -51,6 +51,7 @@ class MovieController extends Controller
       $value0 = $result->id;
       $value1 = $result->tag;
       $value2 = $result->user_id;
+      $value3 = $result->movieurl;
 
       // 動画IDの抽出（とりあえず正規表現のみ）
       $video_url = $result->movieurl;
@@ -59,7 +60,7 @@ class MovieController extends Controller
       $video_id = $pre_video_id['v'];
 
       // Youtube API Key
-      $api_key = "AIzaSyD39v1r76KuRpE_MU5ut6ogSUyoq-7w_3s";
+      $api_key = "AIzaSyAuu0MnhZSLrUn7QNvMRPNycOR8Mt7edeM";
 
       // 動画情報の取得
       $get_api_url = "https://www.googleapis.com/youtube/v3/videos?id=$video_id&key=$api_key&part=snippet,contentDetails,statistics,status";
@@ -74,7 +75,7 @@ class MovieController extends Controller
       	$thumnail_url = $gDat['snippet']['thumbnails']['default']['url'];
       }
       // 配列化
-      $movie_infos[]=array('id' => $value0, 'thumnail_url' => $thumnail_url, 'video_title' => $video_title, 'description' => $description, 'tag' => $value1, 'user_id' => $value2 );
+      $movie_infos[]=array('id' => $value0, 'thumnail_url' => $thumnail_url, 'video_title' => $video_title, 'description' => $description, 'tag' => $value1, 'user_id' => $value2, 'movieurl' => $value3 );
     }
 
     return view('user.movie.index', ['tag' => $tag, 'movie_infos' => $movie_infos]);
