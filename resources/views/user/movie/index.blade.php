@@ -42,7 +42,7 @@
                         <tbody>
                             @foreach($movie_infos as $movie_info)
                                 <tr>
-                                    <td><a href="#"><img src="{{ $movie_info['thumnail_url'] }}" alt="thumnail-image"></td></a>
+                                    <td><a href="{{ $movie_info['movieurl'] }}"  target=”_blank”><img src="{{ $movie_info['thumnail_url'] }}" alt="thumnail-image"></td></a>
                                     <td>{{ \Str::limit($movie_info['video_title'], 100) }}</td>
                                     <td>{{ \Str::limit($movie_info['description'], 100) }}</td>
                                     <td>{{ \Str::limit($movie_info['tag'], 100) }}</td>
@@ -60,11 +60,11 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <input type="button" value="登録動画の一覧" onClick="location.href='{{ asset('user/movie/index') }}'">
+            <div class="col-md-12">
                 <input type="button" value="動画の新規登録" onClick="location.href='{{ asset('user/movie/create') }}'">
                 <input type="button" value="動画リストの一覧" onClick="location.href='{{ asset('user/movielist/index') }}'">
                 <input type="button" value="動画リストの作成" onClick="location.href='{{ asset('user/movielist/create') }}'">
+                <input type="button" value="トップページ" onClick="location.href='{{ asset('/index') }}'">
             </div>
         </div>
     </div>

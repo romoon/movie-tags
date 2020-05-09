@@ -109,7 +109,7 @@ class ListController extends Controller
     // $keywordCondition = implode(' AND ', $keywordCondition);
     $keywordCondition = implode(' OR ', $keywordCondition);
 
-    $prekeyword = "SELECT * FROM movietags.movies WHERE " . $keywordCondition;
+    $prekeyword = "SELECT * FROM movietags.movies WHERE " . $keywordCondition . " AND id = " . $currentuser;
     // dd($prekeyword);
 
     $results = DB::select("$prekeyword");
@@ -132,7 +132,7 @@ class ListController extends Controller
           $video_id = $pre_video_id['v'];
 
           // Youtube API Key
-          $api_key = "AIzaSyD39v1r76KuRpE_MU5ut6ogSUyoq-7w_3s";
+          $api_key = "AIzaSyAuu0MnhZSLrUn7QNvMRPNycOR8Mt7edeM";
 
           // 動画情報の取得
           $get_api_url = "https://www.googleapis.com/youtube/v3/videos?id=$video_id&key=$api_key&part=snippet,contentDetails,statistics,status";
@@ -146,7 +146,7 @@ class ListController extends Controller
           	$thumnail_url = $gDat['snippet']['thumbnails']['default']['url'];
           }
           // 配列化
-          $listresults[]=array('id' => $value0, 'thumnail_url' => $thumnail_url, 'video_title' => $video_title, 'description' => $description, 'tag' => $value1, 'user_id' => $value2 );
+          $listresults[]=array('id' => $value0, 'thumnail_url' => $thumnail_url, 'video_title' => $video_title, 'description' => $description, 'tag' => $value1, 'user_id' => $value2, 'movieurl' => $video_url );
         }
   } else {
         $listresults = [];

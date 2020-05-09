@@ -23,7 +23,7 @@
                         <tbody>
                             @foreach($listresults as $listresult)
                                 <tr>
-                                    <td><img src="{{ $listresult['thumnail_url'] }}" alt="thumnail-image"></td>
+                                    <td><a href="{{ $listresult['movieurl'] }}"  target=”_blank”><img src="{{ $listresult['thumnail_url'] }}" alt="thumnail-image"></a></td>
                                     <td>{{ \Str::limit($listresult['video_title'], 100) }}</td>
                                     <td>{{ \Str::limit($listresult['description'], 100) }}</td>
                                     <td>{{ \Str::limit($listresult['tag'], 100) }}</td>
@@ -46,6 +46,7 @@
                 <input type="button" value="動画の新規登録" onClick="location.href='{{ asset('user/movie/create') }}'">
                 <input type="button" value="動画リストの一覧" onClick="location.href='{{ asset('user/movielist/index') }}'">
                 <input type="button" value="動画リストの作成" onClick="location.href='{{ asset('user/movielist/create') }}'">
+                <input type="button" value="トップページ" onClick="location.href='{{ asset('/index') }}'">
             </div>
         </div>
     </div>
