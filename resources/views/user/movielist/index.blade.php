@@ -40,7 +40,7 @@
                         <tbody>
                             @foreach($results as $result)
                                 <tr>
-                                    <td><a href="#">{{ $result['listname'] }}</a> </td>
+                                    <td><a href="{{ action('user\ListController@search', ['id' => $result['id']]) }}">{{ $result['listname'] }}</a> </td>
                                     <td>{{ \Str::limit($result['taglist'], 100) }}</td>
                                     <td>
                                       <div>
