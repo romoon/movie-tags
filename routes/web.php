@@ -11,9 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', 'FrontController@index');
+Route::group(['prefix' => '/'], function() {
+    Route::get('index', 'FrontController@index');
+    Route::get('', 'FrontController@index');
 });
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::get('movie/create', 'User\MovieController@add');
@@ -29,6 +34,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::get('movielist/edit', 'user\ListController@edit');
     Route::post('movielist/edit', 'user\ListController@update');
     Route::get('movielist/delete', 'user\ListController@delete');
+    Route::get('movielist/result', 'user\ListController@search');
 });
 
 Auth::routes();

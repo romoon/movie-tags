@@ -59,10 +59,11 @@ class MovieController extends Controller
       $video_id = $pre_video_id['v'];
 
       // Youtube API Key
-      $api_key = "AIzaSyAcWbQdKUXKMjDbUUwHQfr5xdzfyjf_G5E";
+      $api_key = "AIzaSyD39v1r76KuRpE_MU5ut6ogSUyoq-7w_3s";
 
       // 動画情報の取得
       $get_api_url = "https://www.googleapis.com/youtube/v3/videos?id=$video_id&key=$api_key&part=snippet,contentDetails,statistics,status";
+      // dd($get_api_url);
       $json = file_get_contents($get_api_url);
       $getData = json_decode( $json , true);
 

@@ -21,16 +21,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($results as $result)
+                            @foreach($listresults as $listresult)
                                 <tr>
-                                    <td><img src="{{ $result['thumnail_url'] }}" alt="thumnail-image"></td>
-                                    <td>{{ \Str::limit($result['video_title'], 100) }}</td>
-                                    <td>{{ \Str::limit($result['description'], 100) }}</td>
-                                    <td>{{ \Str::limit($result['tag'], 100) }}</td>
+                                    <td><img src="{{ $listresult['thumnail_url'] }}" alt="thumnail-image"></td>
+                                    <td>{{ \Str::limit($listresult['video_title'], 100) }}</td>
+                                    <td>{{ \Str::limit($listresult['description'], 100) }}</td>
+                                    <td>{{ \Str::limit($listresult['tag'], 100) }}</td>
                                     <td>
                                       <div>
-                                          <a href="#">編集</a>
-                                          <a href="#">削除</a>
+                                        <a href="{{ action('user\MovieController@edit', ['id' => $listresult['id']]) }}">編集</a>
+                                        <a href="{{ action('user\MovieController@delete', ['id' => $listresult['id']]) }}">削除</a>
                                       </div>
                                     </td>
                                 </tr>

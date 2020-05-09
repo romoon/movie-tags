@@ -42,7 +42,7 @@
                         <tbody>
                             @foreach($movie_infos as $movie_info)
                                 <tr>
-                                    <td><img src="{{ $movie_info['thumnail_url'] }}" alt="thumnail-image"></td>
+                                    <td><a href="#"><img src="{{ $movie_info['thumnail_url'] }}" alt="thumnail-image"></td></a>
                                     <td>{{ \Str::limit($movie_info['video_title'], 100) }}</td>
                                     <td>{{ \Str::limit($movie_info['description'], 100) }}</td>
                                     <td>{{ \Str::limit($movie_info['tag'], 100) }}</td>
