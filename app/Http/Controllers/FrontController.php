@@ -34,7 +34,7 @@ class FrontController extends Controller
 
         parse_str( parse_url( $video_url, PHP_URL_QUERY ), $pre_video_id );
         $video_id = $pre_video_id['v'];
-        $api_key = "AIzaSyAuu0MnhZSLrUn7QNvMRPNycOR8Mt7edeM";
+        $api_key = "AIzaSyB_NlACkE5IituNxbNUdF2Pcx-uBAk5nUc";
 
         $get_api_url = "https://www.googleapis.com/youtube/v3/videos?id=$video_id&key=$api_key&part=snippet,contentDetails,statistics,status";
         $json = file_get_contents($get_api_url);
@@ -87,7 +87,7 @@ class FrontController extends Controller
             $video_id2 = $pre_video_id2['v'];
 
             // Youtube API Key
-            $api_key = "AIzaSyAuu0MnhZSLrUn7QNvMRPNycOR8Mt7edeM";
+            $api_key = "AIzaSyB_NlACkE5IituNxbNUdF2Pcx-uBAk5nUc";
 
             // 動画情報の取得
             $get_api_url2 = "https://www.googleapis.com/youtube/v3/videos?id=$video_id2&key=$api_key&part=snippet,contentDetails,statistics,status";
