@@ -54,6 +54,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('messages.Login') }}
                                     </button>
+                                    <input type="button" value="Admin 管理者login" onClick="location.href='{{ asset('admin/login') }}'">
                                 </div>
                             </div>
                         </form>
