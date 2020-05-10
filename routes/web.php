@@ -37,6 +37,19 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::get('movielist/result', 'user\ListController@search');
 });
 
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('index', 'admin\AdminController@index')->middleware('auth:admin');
+    Route::get('delete', 'admin\AdminController@delete')->middleware('auth:admin');
+
+    // 追加分
+    Route::get('home', 'AdminHomeController@index')->name('admin.home');
+    Route::get('login', 'AdminAuth\LoginController@showLoginForm')->name('admin.login');
+    Route::post('login', 'AdminAuth\LoginController@login')->name('admin.login');
+    Route::post('logout', 'AdminAuth\LoginController@logout');
+    Route::get('register', 'AdminAuth\RegisterController@showRegisterForm')->name('admin.register');
+    Route::post('register', 'AdminAuth\RegisterController@register')->name('admin.register');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

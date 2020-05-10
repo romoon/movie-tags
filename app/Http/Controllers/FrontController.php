@@ -43,17 +43,23 @@ class FrontController extends Controller
         foreach((array)$getData['items'] as $key => $gDat){
           $video_title = $gDat['snippet']['title'];
           // $description = $gDat['snippet']['description'];
-          $thumnail_url = $gDat['snippet']['thumbnails']['default']['url'];
+          $thumnail_url = $gDat['snippet']['thumbnails']['medium']['url'];
+          // $thumnail_url = $gDat['snippet']['thumbnails']['default']['url'];
         }
 
         ${"results".$i}[] = array ('id' => $value0, 'thumnail_url' => $thumnail_url, 'video_title' => $video_title, 'keyword' => $keyword, 'movieurl' => $video_url);
       }
     }
 
+      //
       // Taglist ランダムID->検索 3個
-      $movielist = Movielist::orderByRaw("RAND()")->first();
-      $prekey2 = $movielist->taglist;
+      //
 
+      // Movielist からランダムに取得
+      $movielist = Movielist::orderByRaw("RAND()")->first();
+
+      // Taglist ->配列化 ->SQL文の構築 ->検索
+      $prekey2 = $movielist->taglist;
       $prekey2 = mb_convert_kana($prekey2, 's');
       $keywords2 = preg_split('/[\s]+/', $prekey2, -1, PREG_SPLIT_NO_EMPTY);
 
@@ -66,10 +72,7 @@ class FrontController extends Controller
       $keywordCondition2 = implode(' OR ', $keywordCondition2);
 
       $prekeyword2 = "SELECT * FROM movietags.movies WHERE " . $keywordCondition2;
-      // dd($prekeyword2);
-
       $listresults = DB::select("$prekeyword2");
-      // dd($listresults);
 
       // movie information
       if ( $listresults != null ) {
@@ -98,7 +101,7 @@ class FrontController extends Controller
             foreach((array)$getData['items'] as $key => $gDat){
             	$video_title = $gDat['snippet']['title'];
             	// $description = $gDat['snippet']['description'];
-            	$thumnail_url = $gDat['snippet']['thumbnails']['default']['url'];
+            	$thumnail_url = $gDat['snippet']['thumbnails']['medium']['url'];
             }
             // 配列化
             $listinfos[]=array('id' => $value0, 'thumnail_url' => $thumnail_url, 'video_title' => $video_title,  'tag' => $value1, 'prekey2' => $prekey2, 'movieurl' => $value3 );
@@ -106,7 +109,6 @@ class FrontController extends Controller
       } else {
             $listinfos = [];
       }
-      // dd($listinfos);
 
       return view('/index', ['results1' => $results1, 'results2' => $results2, 'results3' => $results3, 'listinfos' => $listinfos ]);
     }
