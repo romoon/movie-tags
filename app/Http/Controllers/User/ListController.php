@@ -109,8 +109,8 @@ class ListController extends Controller
     // $keywordCondition = implode(' AND ', $keywordCondition);
     $keywordCondition = implode(' OR ', $keywordCondition);
 
-    $prekeyword = "SELECT * FROM movietags.movies WHERE " . $keywordCondition . " AND id = " . $currentuser;
-    // dd($prekeyword);
+    $prekeyword = "SELECT * FROM movietags.movies WHERE " . $keywordCondition . " AND user_id = " . $currentuser;
+    // dd($prekeyword)
 
     $results = DB::select("$prekeyword");
     // dd($results);
@@ -132,10 +132,11 @@ class ListController extends Controller
           $video_id = $pre_video_id['v'];
 
           // Youtube API Key
-          $api_key = "AIzaSyAuu0MnhZSLrUn7QNvMRPNycOR8Mt7edeM";
+          $api_key = "AIzaSyCDB8zK2rgqLcorcYgwAuax0BbOB7pjn9Q";
 
           // 動画情報の取得
           $get_api_url = "https://www.googleapis.com/youtube/v3/videos?id=$video_id&key=$api_key&part=snippet,contentDetails,statistics,status";
+          // dd($get_api_url);
           $json = file_get_contents($get_api_url);
           $getData = json_decode( $json , true);
 

@@ -38,11 +38,6 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-8 mx-auto">
-              <input type="button" value="登録動画の一覧" onClick="location.href='{{ asset('user/movie/index') }}'">
-              <input type="button" value="動画リストの一覧" onClick="location.href='{{ asset('user/movielist/index') }}'">
-              <input type="button" value="動画リストの作成" onClick="location.href='{{ asset('user/movielist/create') }}'">
-            </div>
         </div>
     </div>
 @endsection

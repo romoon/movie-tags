@@ -43,8 +43,9 @@ class MovieController extends Controller
         $results = $search->get();
 
     } else {
-        // それ以外はすべてのMovieを取得する
+        // それ以外
         $results = Movie::where('user_id', $currentuser)->get();
+        // $results = Movie::orderByRaw("RAND()")->take(10)->get();
     }
 
     foreach ($results as $result) {
@@ -60,7 +61,7 @@ class MovieController extends Controller
       $video_id = $pre_video_id['v'];
 
       // Youtube API Key
-      $api_key = "AIzaSyB_NlACkE5IituNxbNUdF2Pcx-uBAk5nUc";
+      $api_key = "AIzaSyCDB8zK2rgqLcorcYgwAuax0BbOB7pjn9Q";
 
       // 動画情報の取得
       $get_api_url = "https://www.googleapis.com/youtube/v3/videos?id=$video_id&key=$api_key&part=snippet,contentDetails,statistics,status";

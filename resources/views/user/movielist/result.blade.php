@@ -40,14 +40,5 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <input type="button" value="登録動画の一覧" onClick="location.href='{{ asset('user/movie/index') }}'">
-                <input type="button" value="動画の新規登録" onClick="location.href='{{ asset('user/movie/create') }}'">
-                <input type="button" value="動画リストの一覧" onClick="location.href='{{ asset('user/movielist/index') }}'">
-                <input type="button" value="動画リストの作成" onClick="location.href='{{ asset('user/movielist/create') }}'">
-                <input type="button" value="トップページ" onClick="location.href='{{ asset('/index') }}'">
-            </div>
-        </div>
     </div>
 @endsection

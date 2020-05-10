@@ -1,4 +1,5 @@
 @extends('layouts.user')
+
 @section('title', '登録済み動画の一覧')
 
 @section('content')
@@ -57,14 +58,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <input type="button" value="動画の新規登録" onClick="location.href='{{ asset('user/movie/create') }}'">
-                <input type="button" value="動画リストの一覧" onClick="location.href='{{ asset('user/movielist/index') }}'">
-                <input type="button" value="動画リストの作成" onClick="location.href='{{ asset('user/movielist/create') }}'">
-                <input type="button" value="トップページ" onClick="location.href='{{ asset('/index') }}'">
             </div>
         </div>
     </div>

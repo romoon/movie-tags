@@ -11,44 +11,63 @@ class FrontController extends Controller
 {
     public function index(Request $request)
     {
+      // 3回繰り返し
       for ($i = 1; $i < 4; $i++) {
-      // Movie ランダムID->ランダムTag1つ->検索
-      $movie = Movie::orderByRaw("RAND()")->first();
-      $prekey = $movie->tag;
 
-      $prekey = mb_convert_kana($prekey, 's');
-      $keywords = preg_split('/[\s]+/', $prekey, -1, PREG_SPLIT_NO_EMPTY);
+          //
+          // データベースからランダムに1レコード選び、タグ情報を取得する
+          //
+          $movie = Movie::orderByRaw("RAND()")->first();
+          $prekey = $movie->tag;
 
-      $keyword = $keywords[ array_rand( $keywords,1 ) ] ;
+          //
+          // タグを配列化し、ランダムに1つ選ぶ
+          //
+          $prekey = mb_convert_kana($prekey, 's');
+          $keywords = preg_split('/[\s]+/', $prekey, -1, PREG_SPLIT_NO_EMPTY);
 
-      $search = Movie::where('tag', 'like', '%'.$keyword.'%');
-      $results = $search->get();
+          $keyword = $keywords[ array_rand( $keywords,1 ) ] ;
 
-      for ($k = 1; $k < 4; $k++) {
-        foreach ($results as $result) {
-          $value0 = $result->id;
-          // $value1 = $result->tag;
-          // $value2 = $result->user_id;
-          $video_url = $result->movieurl;
-        }
+          //
+          // データベースを検索
+          //
+          $search = Movie::where('tag', 'like', '%'.$keyword.'%');
+          $results = $search->orderByRaw("RAND()")->take(3)->get();
 
-        parse_str( parse_url( $video_url, PHP_URL_QUERY ), $pre_video_id );
-        $video_id = $pre_video_id['v'];
-        $api_key = "AIzaSyB_NlACkE5IituNxbNUdF2Pcx-uBAk5nUc";
+          //
+          // 検索結果のうち3つについて、動画情報を配列化する
+          //
+          // $k = 1;
+          foreach ($results as $result) {
+            // if ( $k > 3) {
+            //   break;
+            // } else {
+              $value0 = $result->id;
+              // $value1 = $result->tag;
+              // $value2 = $result->user_id;
+              $video_url = $result->movieurl;
 
-        $get_api_url = "https://www.googleapis.com/youtube/v3/videos?id=$video_id&key=$api_key&part=snippet,contentDetails,statistics,status";
-        $json = file_get_contents($get_api_url);
-        $getData = json_decode( $json , true);
+              // Video ID, API
+              parse_str( parse_url( $video_url, PHP_URL_QUERY ), $pre_video_id );
+              $video_id = $pre_video_id['v'];
+              $api_key = "AIzaSyCDB8zK2rgqLcorcYgwAuax0BbOB7pjn9Q";
 
-        foreach((array)$getData['items'] as $key => $gDat){
-          $video_title = $gDat['snippet']['title'];
-          // $description = $gDat['snippet']['description'];
-          $thumnail_url = $gDat['snippet']['thumbnails']['medium']['url'];
-          // $thumnail_url = $gDat['snippet']['thumbnails']['default']['url'];
-        }
+              $get_api_url = "https://www.googleapis.com/youtube/v3/videos?id=$video_id&key=$api_key&part=snippet,contentDetails,statistics,status";
+              $json = file_get_contents($get_api_url);
+              $getData = json_decode( $json , true);
 
-        ${"results".$i}[] = array ('id' => $value0, 'thumnail_url' => $thumnail_url, 'video_title' => $video_title, 'keyword' => $keyword, 'movieurl' => $video_url);
-      }
+              // 動画情報の取得
+              foreach((array)$getData['items'] as $key => $gDat){
+                $video_title = $gDat['snippet']['title'];
+                // $description = $gDat['snippet']['description'];
+                $thumnail_url = $gDat['snippet']['thumbnails']['medium']['url'];
+              }
+
+              // 配列化
+              ${"results".$i}[] = array ('id' => $value0, 'thumnail_url' => $thumnail_url, 'video_title' => $video_title, 'keyword' => $keyword, 'movieurl' => $video_url);
+          }
+          // $k++;
+          // }
     }
 
       //
@@ -71,7 +90,7 @@ class FrontController extends Controller
       // $keywordCondition2 = implode(' AND ', $keywordCondition2);
       $keywordCondition2 = implode(' OR ', $keywordCondition2);
 
-      $prekeyword2 = "SELECT * FROM movietags.movies WHERE " . $keywordCondition2;
+      $prekeyword2 = "SELECT * FROM movietags.movies WHERE " . $keywordCondition2 . "LIMIT 6";
       $listresults = DB::select("$prekeyword2");
 
       // movie information
@@ -90,7 +109,7 @@ class FrontController extends Controller
             $video_id2 = $pre_video_id2['v'];
 
             // Youtube API Key
-            $api_key = "AIzaSyB_NlACkE5IituNxbNUdF2Pcx-uBAk5nUc";
+            $api_key = "AIzaSyCDB8zK2rgqLcorcYgwAuax0BbOB7pjn9Q";
 
             // 動画情報の取得
             $get_api_url2 = "https://www.googleapis.com/youtube/v3/videos?id=$video_id2&key=$api_key&part=snippet,contentDetails,statistics,status";
