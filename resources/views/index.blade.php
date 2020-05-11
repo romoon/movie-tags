@@ -39,8 +39,10 @@
                 <hr style="border-top:3px double lightgray;">
             </div>
             @endfor
+        </div>
 
         <!-- Tag-List -->
+        <div class="row">
             <div class="col-md-12 mt-md-4">
                 <h4>Feel lucky Tag-List</h4>
             </div>

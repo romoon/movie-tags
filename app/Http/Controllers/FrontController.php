@@ -32,7 +32,7 @@ class FrontController extends Controller
           // データベースを検索
           //
           $search = Movie::where('tag', 'like', '%'.$keyword.'%');
-          $results = $search->orderByRaw("RAND()")->take(3)->get();
+          $results = $search->orderByRaw("RAND()")->limit(3)->get();
 
           //
           // 検索結果のうち3つについて、動画情報を配列化する
@@ -50,9 +50,10 @@ class FrontController extends Controller
               // Video ID, API
               parse_str( parse_url( $video_url, PHP_URL_QUERY ), $pre_video_id );
               $video_id = $pre_video_id['v'];
-              $api_key = "AIzaSyCDB8zK2rgqLcorcYgwAuax0BbOB7pjn9Q";
+              $api_key = "AIzaSyBQ1dxu64jcpxQ2rqANUmPvHGEv938AMS4";
 
               $get_api_url = "https://www.googleapis.com/youtube/v3/videos?id=$video_id&key=$api_key&part=snippet,contentDetails,statistics,status";
+              // dd($get_api_url);
               $json = file_get_contents($get_api_url);
               $getData = json_decode( $json , true);
 
@@ -109,7 +110,7 @@ class FrontController extends Controller
             $video_id2 = $pre_video_id2['v'];
 
             // Youtube API Key
-            $api_key = "AIzaSyCDB8zK2rgqLcorcYgwAuax0BbOB7pjn9Q";
+            $api_key = "AIzaSyBQ1dxu64jcpxQ2rqANUmPvHGEv938AMS4";
 
             // 動画情報の取得
             $get_api_url2 = "https://www.googleapis.com/youtube/v3/videos?id=$video_id2&key=$api_key&part=snippet,contentDetails,statistics,status";
