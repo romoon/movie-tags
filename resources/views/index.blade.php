@@ -22,23 +22,27 @@
         <!-- Tag -->
         <div class="row">
             <div class="col-md-12">
-                <h4>Feel lucky Tag</h4>
-            </div>
-            @for($count=1 ;$count < 4; $count++ )
-            <div class="col-md-12 mt-md-4">
-                <h2>Tag : {{ ${"results".$count}[0]['keyword'] }}</h2>
-            </div>
-
-            @foreach(${"results".$count} as $result)
-                <div class="col-md-3 mr-md-1 mt-md-2">
-                  <a href="{{ $result['movieurl'] }}"  target=”_blank”><img src="{{ $result['thumnail_url'] }}" class="img-fluid" alt="thumnail-image"></a></br>
-                  <p>{{ \Str::limit($result['video_title'], 100) }}</p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Feel lucky Tag</h4>
+                    </div>
+                
+                    @for($count=1 ;$count < 4; $count++ )
+                    <div class="col-md-12 mt-md-4">
+                      <h2>Tag : {{ ${"results".$count}[0]['keyword'] }}</h2>
+                    </div>
+                    @foreach(${"results".$count} as $result)
+                        <div class="col-md-3 mr-md-1 mt-md-2">
+                          <a href="{{ $result['movieurl'] }}"  target=”_blank”><img src="{{ $result['thumnail_url'] }}" class="img-fluid" alt="thumnail-image"></a></br>
+                          <p>{{ \Str::limit($result['video_title'], 100) }}</p>
+                        </div>
+                    @endforeach
+                    <div class="col-md-12">
+                        <hr style="border-top:3px double lightgray;">
+                    </div>
+                    @endfor
                 </div>
-            @endforeach
-            <div class="col-md-12">
-                <hr style="border-top:3px double lightgray;">
             </div>
-            @endfor
         </div>
 
         <!-- Tag-List -->
@@ -56,8 +60,10 @@
                 <p>{{ \Str::limit($listinfo['tag'], 100) }}</p>
             </div>
             @endforeach
-          </div>
-          <hr style="border-top:3px double lightgray;">
+            <div class="col-md-12">
+                <hr style="border-top:3px double lightgray;">
+            </div>
+        </div>
 
         <div class="row">
             <hr style="border-top:3px double lightgray;">

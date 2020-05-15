@@ -132,7 +132,8 @@ class ListController extends Controller
           $video_id = $pre_video_id['v'];
 
           // Youtube API Key
-          $api_key = "AIzaSyBQ1dxu64jcpxQ2rqANUmPvHGEv938AMS4";
+          // $api_key = "AIzaSyBQ1dxu64jcpxQ2rqANUmPvHGEv938AMS4";
+          $api_key = config('app.yt_key');
 
           // 動画情報の取得
           $get_api_url = "https://www.googleapis.com/youtube/v3/videos?id=$video_id&key=$api_key&part=snippet,contentDetails,statistics,status";
