@@ -11,7 +11,7 @@ use App\Facades\Util;
 
 class FrontController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
       //
       // Tag 抽出 -> 3個 検索 x 3組
@@ -121,8 +121,8 @@ class FrontController extends Controller
           $listinfos = []; // 検索にヒットしなければ空の配列を返す
       }
 
-      $commontest = Util::echoUtil();
-      // dd($commontest);
+      // $func = Util::selectTags();
+      // dd($func);
 
       return view('/index', ['results1' => $results1, 'results2' => $results2, 'results3' => $results3, 'listinfos' => $listinfos ]);
     }
