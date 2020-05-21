@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ja',
 
     /*
     |--------------------------------------------------------------------------
@@ -125,6 +125,13 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | configに.envの内容を入れる。
+    |--------------------------------------------------------------------------
+    */
+    'yt_key' => env('YOUTUBE_API_KEY'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Autoloaded Service Providers
     |--------------------------------------------------------------------------
     |
@@ -165,6 +172,7 @@ return [
         /*
          * Package Service Providers...
          */
+        App\Providers\UtilServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -225,6 +233,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        'Util' => App\Facades\Util::class,
 
     ],
 
