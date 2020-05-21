@@ -7,6 +7,8 @@ use App\Models\Movie;
 use App\Models\Movielist;
 use DB;
 
+use App\Facades\Util;
+
 class FrontController extends Controller
 {
     public function index(Request $request)
@@ -118,6 +120,9 @@ class FrontController extends Controller
       } else {
           $listinfos = []; // 検索にヒットしなければ空の配列を返す
       }
+
+      $commontest = Util::echoUtil();
+      // dd($commontest);
 
       return view('/index', ['results1' => $results1, 'results2' => $results2, 'results3' => $results3, 'listinfos' => $listinfos ]);
     }
